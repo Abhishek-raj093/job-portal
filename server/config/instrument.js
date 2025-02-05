@@ -6,7 +6,7 @@ Sentry.init({
   dsn: "https://38e3cceb0e9f8fe2995d85d2d73906a2@o4508584727543808.ingest.us.sentry.io/4508763851063296",
   integrations: [
     nodeProfilingIntegration(),
-    Sentry.mongoIntegration()
+    Sentry.mongoIntegration(),
   ],
   // Tracing
  // tracesSampleRate: 1.0, //  Capture 100% of the transactions
