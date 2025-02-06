@@ -4,14 +4,16 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "server": "nodemon server.js",
-    "start": "node server.js"
+    "server": "nodemon server.js && npm run sentry:sourcemaps",
+    "start": "node server.js",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org nims-7r --project job-portal ../.. && sentry-cli sourcemaps upload --org nims-7r --project job-portal ../.."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@sentry/cli": "^2.41.1",
     "@sentry/node": "^8.54.0",
     "@sentry/profiling-node": "^8.54.0",
     "bcrypt": "^5.1.1",
