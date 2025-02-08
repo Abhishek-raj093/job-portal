@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { jobsData } from "../assets/assets";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 
 export const AppContext = createContext();
 
@@ -23,7 +25,20 @@ export const AppContextProvider = (props) =>  {
 
     // Function to fetch jobs
     const fetchJobs = async () => {
-        setJobs(jobsData)
+        try {
+
+            const {data} = await axios.get(backendUrl + '/api/jobs')
+
+            if (data.success) {
+                setJobs(data.jobs)
+                console.log(data.jobs);
+            } else {
+                toast.error(data.message)
+            }
+
+        } catch (error) {
+            toast.error(error.message)
+        }
     }
 
     // Function to fetch company data
@@ -46,7 +61,7 @@ export const AppContextProvider = (props) =>  {
     useEffect(()=>{
         fetchJobs()
 
-        const storedCompanyToken = localStorage.getItems('companyToken')
+        const storedCompanyToken = localStorage.getItem('companyToken')
 
         if (storedCompanyToken) {
             setCompanyToken(storedCompanyToken)
