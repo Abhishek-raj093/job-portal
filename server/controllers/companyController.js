@@ -68,7 +68,7 @@ export const loginCompany = async (req,res) => {
 
         if (await bcrypt.compare(password, company.password)) {
             res.json({
-                success:false, 
+                success:true, 
                 company:{
                     _id: company._id,
                     name: company.name,
@@ -102,7 +102,7 @@ export const getCompanyData = async (req,res) => {
 
 }
 
-// Port a new Job
+// Post a new Job
 export const postJob = async (req, res) => {
 
     const {title, description, location, salary, level, category} = req.body
