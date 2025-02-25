@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { assets, viewApplicationsPageData} from '../assets/assets'
+import { AppContext } from '../context/AppContext'
 
 const ViewApplications = () => {
+
+  const [applications, setApplications] = useContext(false)
+  const {backendUrl, companyToken} = useContext(AppContext)
+
+  // Function to fetch company Job applications data
+  const fetchCompanyJobApplications = async () => {
+    
+  }
+
   return (
     <div className='container mx-auto p-4'>
       <div>
