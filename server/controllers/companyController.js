@@ -137,6 +137,19 @@ export const postJob = async (req, res) => {
 // Get Company Jobs Applicants
 export const getCompanyJobApplicants = async (req,res) => {
 
+    try {
+        const {id, status} = req.body
+
+    // Find Job Application and update status
+    await JobApplication.findByIdAndUpdate({_id: id}, {status})
+
+    res.json({success:true, message: 'Status Changed'})
+    
+
+    } catch (error) {
+        res.json({success:false, message: error.message})
+    }
+
 }
 
 // Get Company Posted Jobs
